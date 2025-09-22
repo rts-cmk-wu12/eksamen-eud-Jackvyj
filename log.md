@@ -25,3 +25,8 @@ Skriv dit sluttidspunkt her og commit/push til GitHub:
 Skriv dit starttidspunkt her og commit/push til GitHub: 
 
 Skriv dit sluttidspunkt her og commit/push til GitHub: 
+
+## Dag 6
+Skriv dit starttidspunkt her og commit/push til GitHub: 
+
+Skriv dit sluttidspunkt her og commit/push til GitHub: 
