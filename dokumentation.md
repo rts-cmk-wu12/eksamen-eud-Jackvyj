@@ -1,6 +1,6 @@
 # Opgavetitel
-Dit navn
+Dit navn: Peter
 
-Hold nr.
+Hold nr. 12
 
-Valgfri opgave:
+Valgfri opgave: Valgfri opgave C - Opret bruger
