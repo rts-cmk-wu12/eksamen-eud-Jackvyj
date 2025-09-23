@@ -1,5 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import mainlogo from "../icon.png";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { IoLogoLinkedin } from "react-icons/io5";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +26,61 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div className="flex justify-between border-b-1 m-10 border-solid border-gray-300 mt-5">
+          <div className="flex items-center gap-x-5">
+            <Image src={mainlogo} alt="" />
+            <div>SwapHub</div>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <button className="bg-gray-100 hover:bg-green-500">Listings</button>
+            <button className="hover:bg-green-500">Community</button>
+            <button className="hover:bg-green-500">Contact</button>
+            <div className="flex gap-x-3 ml-5">
+              <button className="bg-gray-300 hover:bg-green-500">
+                Sign in
+              </button>
+              <button className="mx-8 bg-black text-white hover:bg-green-500">
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
         {children}
+        <div className="flex justify-around border-t-1 m-10 border-solid border-gray-300 pt-5">
+          <div className="justify-between h-17">
+            <div className="flex items-center gap-x-5">
+              <Image src={mainlogo} alt="" />
+              <div>SwapHub</div>
+            </div>
+            <div className="flex gap-x-3">
+              <FaXTwitter />
+              <FaInstagram />
+              <FaYoutube />
+              <IoLogoLinkedin />
+            </div>
+          </div>
+          <div>
+            <div className="font-bold mb-5">About SwapHub</div>
+            <div>How it works</div>
+            <div>Community guidelines</div>
+            <div>Our mission</div>
+            <div>Contact us</div>
+          </div>
+          <div>
+            <div className="font-bold mb-5">Discover</div>
+            <div>Browse categories</div>
+            <div>Popular swaps</div>
+            <div>Successful stories</div>
+            <div>Upcoming events</div>
+          </div>
+          <div>
+            <div className="font-bold mb-5">Support</div>
+            <div>Help center</div>
+            <div>FAQs</div>
+            <div>Security tips</div>
+            <div>Report an issue</div>
+          </div>
+        </div>
       </body>
     </html>
   );
