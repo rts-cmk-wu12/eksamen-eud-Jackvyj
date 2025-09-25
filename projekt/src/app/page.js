@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getListing } from "./request";
-import Image from "next/image";
+import Listing from "@/components/listing";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -35,20 +35,9 @@ export default function Home() {
         {listing
           .filter(filterSearch)
           .slice(currentPage * 6, currentPage * 6 + 6)
-          .map((item) => {
-            const title = item.title;
-            const imageUrl = item.asset.url;
-
-            return (
-              <div
-                key={item.id}
-                className="border-2 justify-items-center items-center w-76 h-76"
-              >
-                <Image src={imageUrl} alt="" width={150} height={150} />
-                <div>{title}</div>
-              </div>
-            );
-          })}
+          .map((item) => (
+            <Listing item={item} key={item.id} />
+          ))}
       </div>
       <div className="flex justify-center gap-5 mt-5">
         <button
