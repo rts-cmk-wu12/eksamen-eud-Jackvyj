@@ -42,16 +42,25 @@ export default function RootLayout({ children }) {
             <button className="hover:bg-blue-300 rounded-full p-1 px-1">
               Community
             </button>
-            <button className="hover:bg-blue-300 rounded-full p-1 px-1">
+            <Link
+              href="/contact"
+              className="hover:bg-blue-300 rounded-full p-1 px-1"
+            >
               Contact
-            </button>
+            </Link>
             <div className="flex gap-x-1 ml-4">
-              <button className="bg-gray-300 rounded-full p-1 px-1 hover:bg-blue-300">
+              <Link
+                href="/sign-in"
+                className="bg-gray-300 rounded-full p-1 px-1 hover:bg-blue-300"
+              >
                 Sign in
-              </button>
-              <button className="mx-8 bg-black text-white hover:bg-blue-300 rounded-full p-1 px-1">
+              </Link>
+              <Link
+                href="/sign-up"
+                className="mx-8 bg-black text-white hover:bg-blue-300 rounded-full p-1 px-1"
+              >
                 Register
-              </button>
+              </Link>
             </div>
           </div>
         </div>

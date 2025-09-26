@@ -6,7 +6,8 @@ import { subscribeNewsletter } from "../request";
 export default function Contact() {
   const [email, setEmail] = useState("");
   const [response, setResponse] = useState();
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     subscribeNewsletter(email).then((out) => setResponse(out));
   };
 

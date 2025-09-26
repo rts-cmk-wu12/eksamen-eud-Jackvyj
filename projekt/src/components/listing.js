@@ -9,9 +9,15 @@ export default function Listing({ item }) {
     <Link
       href={`/details/${item.id}`}
       key={item.id}
-      className="border-2 justify-items-center items-center w-76 h-76"
+      className="border-1 rounded-sm justify-items-center items-center w-76 h-76"
     >
-      <Image src={imageUrl} alt="" width={150} height={150} />
+      <Image
+        className="p-2 w-auto h-5/6"
+        src={imageUrl}
+        alt=""
+        width={150}
+        height={150}
+      />
       <div>{title}</div>
     </Link>
   );

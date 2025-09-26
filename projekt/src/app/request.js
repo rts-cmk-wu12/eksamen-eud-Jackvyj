@@ -1,10 +1,9 @@
-async function request(url) {
+async function request(url, token = null) {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer kj3h45bl2k34jt23498570q9n8098354t7029358tyowie5uthw8475tyq98347ty834irhfoqi34uyt18",
+      Authorization: `Bearer ${token}`,
     },
   };
 
@@ -14,21 +13,20 @@ async function request(url) {
   return json;
 }
 
-async function requestPost(url, body) {
+async function requestPost(url, body, token = null) {
   const options = {
     method: "POST",
     headers: {
       accept: "application/json",
       "Content-type": "application/json",
-      Authorization:
-        "Bearer kj3h45bl2k34jt23498570q9n8098354t7029358tyowie5uthw8475tyq98347ty834irhfoqi34uyt18",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(body),
   };
 
   const response = await fetch(url, options);
 
-  return response.ok;
+  return response;
 }
 
 export async function getListing() {
@@ -45,5 +43,35 @@ export async function subscribeNewsletter(email) {
   const url = `http://localhost:4000/api/v1/newsletter`;
   const body = { email: email };
 
-  return await requestPost(url, body);
+  return await requestPost(url, body).ok;
+}
+
+export async function createToken(email, password) {
+  const url = `http://localhost:4000/auth/token`;
+  const body = { email: email, password: password };
+
+  const request = await requestPost(url, body);
+
+  if (request.ok) {
+    return await request.json();
+  }
+  return request.ok;
+}
+
+export async function createUser(email, password, firstname, lastname) {
+  const url = `http://localhost:4000/api/v1/users
+`;
+  const body = {
+    email: email,
+    password: password,
+    firstname: firstname,
+    lastname: lastname,
+  };
+
+  const request = await requestPost(url, body);
+
+  if (request.ok) {
+    return await request.json();
+  }
+  return request.ok;
 }
