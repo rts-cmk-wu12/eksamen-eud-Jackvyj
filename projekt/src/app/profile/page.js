@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { createUser } from "../request";
+import { useEffect, useState } from "react";
+import { createUser, getUser, updateUser } from "../request";
 import { useRouter } from "next/navigation";
 
-export default function signUp() {
+export default function profile() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [firstname, setFirstname] = useState("");
@@ -12,15 +12,29 @@ export default function signUp() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    createUser(email, password, firstname, lastname).then(async (out) => {
-      if (!out) {
-        setError(true);
-        return;
-      }
-      router.push("/sign-in");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userid = localStorage.getItem("userid");
+    getUser(userid, token).then((out) => {
+      setFirstname(out.firstname);
+      setLastname(out.lastname);
+      setEmail(out.email);
     });
+  }, []);
+
+  const handleSubmit = async (e) => {
+    const token = localStorage.getItem("token");
+    const userid = localStorage.getItem("userid");
+    e.preventDefault();
+    updateUser(userid, token, email, password, firstname, lastname).then(
+      async (out) => {
+        if (!out) {
+          setError(true);
+          return;
+        }
+        router.push("/");
+      }
+    );
   };
 
   return (
@@ -70,7 +84,7 @@ export default function signUp() {
             className="bg-black text-white w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Sign Up
+            update
           </button>
         </div>
       </form>

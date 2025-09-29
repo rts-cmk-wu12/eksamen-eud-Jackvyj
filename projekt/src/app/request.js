@@ -29,6 +29,22 @@ async function requestPost(url, body, token = null) {
   return response;
 }
 
+async function requestPut(url, body, token = null) {
+  const options = {
+    method: "PUT",
+    headers: {
+      accept: "application/json",
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  };
+
+  const response = await fetch(url, options);
+
+  return response;
+}
+
 export async function getListing() {
   const url = "http://localhost:4000/api/v1/listings";
   return await request(url);
@@ -59,8 +75,7 @@ export async function createToken(email, password) {
 }
 
 export async function createUser(email, password, firstname, lastname) {
-  const url = `http://localhost:4000/api/v1/users
-`;
+  const url = `http://localhost:4000/api/v1/users`;
   const body = {
     email: email,
     password: password,
@@ -69,6 +84,35 @@ export async function createUser(email, password, firstname, lastname) {
   };
 
   const request = await requestPost(url, body);
+
+  if (request.ok) {
+    return await request.json();
+  }
+  return request.ok;
+}
+
+export async function getUser(id, token) {
+  const url = `http://localhost:4000/api/v1/users/${id}`;
+  return await request(url, token);
+}
+
+export async function updateUser(
+  id,
+  token,
+  email,
+  password,
+  firstname,
+  lastname
+) {
+  const url = `http://localhost:4000/api/v1/users/${id}`;
+  const body = {
+    email: email,
+    password: password,
+    firstname: firstname,
+    lastname: lastname,
+  };
+
+  const request = await requestPut(url, body, token);
 
   if (request.ok) {
     return await request.json();

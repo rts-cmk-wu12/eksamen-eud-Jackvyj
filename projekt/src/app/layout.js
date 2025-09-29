@@ -61,6 +61,12 @@ export default function RootLayout({ children }) {
               >
                 Register
               </Link>
+              <Link
+                href="/profile"
+                className="mx-8 bg-black text-white hover:bg-blue-300 rounded-full p-1 px-1"
+              >
+                profile
+              </Link>
             </div>
           </div>
         </div>
